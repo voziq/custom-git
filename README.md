@@ -9,7 +9,7 @@ If you want to install & give it a try, clone the repo first & then use the comm
 
 * JupyterLab
 
-## Installation & Development
+## Step 1: Installation & Development of the Git plug-in
 
 For a development install (requires npm version 4 or later), do the following in the repository directory:
 
@@ -25,7 +25,7 @@ npm run build
 jupyter lab build
 ```
 
-## Installation and activation of Git handler
+## Step 2: Installation and activation of Git handler
 
 Installation and activation for jupyterlab_git python handler package (requires anaconda:python version >=3.6.0):
 
