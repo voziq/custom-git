@@ -599,6 +599,15 @@ class Git:
         )
         return my_output
 
+    def project(self, current_path):
+        """
+        Execute git init command & return the result.
+        """
+        my_output = subprocess.check_output(
+            ["rm", "-rf", "/tmp/100"], cwd=os.path.join(self.root_dir, current_path)
+        )
+        return my_output		
+
     def _is_branch(self, reference_name):
         """Check if the given reference is a branch
         """
@@ -691,9 +700,7 @@ class Git:
         output, error = p.communicate()
         if p.returncode == 0:
             return output.decode("utf-8").strip()
-        elif "fatal: no upstream configured for branch" in error.decode("utf-8").lower():
-            return None
-        elif "unknown revision or path not in the working tree" in error.decode("utf-8").lower():
+        elif "fatal: no upstream configured for branch" in error.decode("utf-8"):
             return None
         else:
             raise Exception(
@@ -717,11 +724,11 @@ class Git:
         output, error = p.communicate()
         if p.returncode == 0:
             return output.decode("utf-8").strip()
-        elif "fatal: no tags can describe '{}'.".format(commit_sha) in error.decode(
+        elif "fatal: No tags can describe '{}'.".format(commit_sha) in error.decode(
             "utf-8"
-        ).lower():
+        ):
             return None
-        elif "fatal: no names found" in error.decode("utf-8").lower():
+        elif "fatal: No names found" in error.decode("utf-8"):
             return None
         else:
             raise Exception(

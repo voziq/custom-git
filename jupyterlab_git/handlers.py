@@ -397,6 +397,18 @@ class GitInitHandler(GitHandler):
         my_output = self.git.init(current_path)
         self.finish(my_output)
 
+class GitProjectHandler(GitHandler):
+    """
+    Handler for 'git init'. Initializes a repository.
+    """
+
+    def post(self):
+        """
+        POST request handler, initializes a repository.
+        """
+        current_path = self.get_json_body()["current_path"]
+        my_output = self.git.project(current_path)
+        self.finish(my_output)		
 
 class GitAddAllUntrackedHandler(GitHandler):
     """
@@ -474,6 +486,7 @@ def setup_handlers(web_app):
         ("/git/log", GitLogHandler),
         ("/git/detailed_log", GitDetailedLogHandler),
         ("/git/init", GitInitHandler),
+        ("/git/project", GitProjectHandler),		
         ("/git/all_history", GitAllHistoryHandler),
         ("/git/add_all_untracked", GitAddAllUntrackedHandler),
         ("/git/clone", GitCloneHandler),

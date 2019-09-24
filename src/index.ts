@@ -133,7 +133,7 @@ function activate(
   let tutorial = new Menu({ commands });
   tutorial.title.label = ' Tutorial ';
   menu.title.label = category;
-  [CommandIDs.gitUI, CommandIDs.gitTerminal, CommandIDs.gitInit].forEach(
+  [CommandIDs.gitUI, CommandIDs.gitTerminal, CommandIDs.gitInit, CommandIDs.gitProject].forEach(
     command => {
       menu.addItem({ command });
     }

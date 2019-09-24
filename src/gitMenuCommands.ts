@@ -16,6 +16,7 @@ export namespace CommandIDs {
   export const gitTerminal = 'git:create-new-terminal';
   export const gitTerminalCommand = 'git:terminal-command';
   export const gitInit = 'git:init';
+  export const gitProject = 'git:project';  
   export const setupRemotes = 'git:tutorial-remotes';
   export const googleLink = 'git:google-link';
 }
@@ -132,6 +133,24 @@ export function addCommands(app: JupyterFrontEnd, services: ServiceManager) {
       });
     }
   });
+
+  /** Add git project command */
+  commands.addCommand(CommandIDs.gitProject, {
+    label: 'Init',
+    caption: ' Create an empty Git repository or reinitialize an existing one',
+    execute: () => {
+      let currentFileBrowserPath = findCurrentFileBrowserPath();
+      showDialog({
+        title: 'Initialize a Repository',
+        body: 'Do you really want to make this directory a Git Repo?',
+        buttons: [Dialog.cancelButton(), Dialog.warnButton({ label: 'Yes' })]
+      }).then(result => {
+        if (result.button.accept) {
+          gitApi.project(currentFileBrowserPath);
+        }
+      });
+    }
+  });  
 
   /** Add remote tutorial command */
   commands.addCommand(CommandIDs.setupRemotes, {
