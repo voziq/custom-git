@@ -31,7 +31,7 @@ Welcome! Before creating a new issue:
 <!--Complete the following for context, and add any other relevant context-->
 
 - Python package version:
-<!-- Results of `conda list jupyterlab-git` or `pip show jupyterlab-git` -->
+<!-- Results of `conda list custom-git` or `pip show custom-git` -->
 - Extension version:
 <!-- Results of `jupyter labextension list` -->
 

@@ -1,6 +1,6 @@
-# Specification of jupyterlab-git REST API
+# Specification of custom-git REST API
 
-A description of all jupyterlab-git REST API endpoints
+A description of all custom-git REST API endpoints
 Contents for each call include:
 
 1. URLS

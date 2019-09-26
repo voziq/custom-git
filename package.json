@@ -1,5 +1,5 @@
 {
-  "name": "@jupyterlab/git",
+  "name": "@voziq/customgit",
   "version": "0.8.2",
   "description": "A JupyterLab extension for version control using git",
   "main": "lib/index.js",
@@ -40,7 +40,7 @@
           "conda"
         ],
         "base": {
-          "name": "jupyterlab-git"
+          "name": "custom-git"
         }
       }
     }
@@ -103,12 +103,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jupyterlab/jupyterlab-git.git"
+    "url": "https://github.com/voziq/custom-git.git"
   },
   "bugs": {
-    "url": "https://github.com/jupyterlab/jupyterlab-git/issues"
+    "url": "https://github.com/voziq/custom-git/issues"
   },
-  "homepage": "https://github.com/jupyterlab/jupyterlab-git",
+  "homepage": "https://github.com/voziq/custom-git",
   "resolutions": {
     "@types/react": "~16.8.4"
   }

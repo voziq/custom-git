@@ -1,4 +1,4 @@
-# jupyterlab-git
+# custom-git
 
 [![Binder](https://beta.mybinder.org/badge.svg)](https://mybinder.org/v2/gh/jupyterlab/jupyterlab-git/master?urlpath=lab) [![Build Status](https://travis-ci.org/jupyterlab/jupyterlab-git.svg?branch=master)](https://travis-ci.org/jupyterlab/jupyterlab-git) [![Version](https://img.shields.io/npm/v/@jupyterlab/git.svg)](https://www.npmjs.com/package/@jupyterlab/git) [![Version](https://img.shields.io/pypi/v/jupyterlab-git.svg)](https://pypi.org/project/jupyterlab-git/) [![Downloads](https://img.shields.io/npm/dm/@jupyterlab/git.svg)](https://www.npmjs.com/package/@jupyterlab/git) [![Version](https://img.shields.io/conda/vn/conda-forge/jupyterlab-git.svg)](https://anaconda.org/conda-forge/jupyterlab-git) [![Downloads](https://img.shields.io/conda/dn/conda-forge/jupyterlab-git.svg)](https://anaconda.org/conda-forge/jupyterlab-git)
 
@@ -20,7 +20,7 @@ A JupyterLab extension for version control using git
 To install perform the following steps:
 
 ```bash
-pip install --upgrade jupyterlab-git
+pip install --upgrade custom-git
 jupyter lab build
 ```
 
@@ -56,8 +56,8 @@ Requires node 4+ and npm 4+
 
 ```bash
 # Clone the repo to your local environment
-git clone https://github.com/jupyterlab/jupyterlab-git.git
-cd jupyterlab-git
+git clone https://github.com/voziq/custom-git.git
+cd custom-git
 # Install the server extension in development mode
 pip install -e .
 jupyter serverextension enable --py jupyterlab_git
