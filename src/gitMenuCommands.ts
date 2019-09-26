@@ -136,7 +136,7 @@ export function addCommands(app: JupyterFrontEnd, services: ServiceManager) {
 
   /** Add git project command */
   commands.addCommand(CommandIDs.gitProject, {
-    label: 'Init',
+    label: 'Project',
     caption: ' Create an empty Git repository or reinitialize an existing one',
     execute: () => {
       let currentFileBrowserPath = findCurrentFileBrowserPath();
