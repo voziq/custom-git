@@ -141,6 +141,7 @@ export function addCommands(app: JupyterFrontEnd, services: ServiceManager) {
     label: 'Project',
     caption: ' Create an empty Git repository or reinitialize an existing one',
     execute: async () => {
+    let currentFileBrowserPath = findCurrentFileBrowserPath();
      const dialog = new Dialog({
       title: 'Create Git Project',
       body: new Project(),
