@@ -2,6 +2,8 @@ import { Dialog, showDialog, MainAreaWidget } from '@jupyterlab/apputils';
 
 import { JupyterFrontEnd } from '@jupyterlab/application';
 
+import { Widget } from '@phosphor/widgets';
+
 import { ServiceManager } from '@jupyterlab/services';
 
 import { ITerminal } from '@jupyterlab/terminal';
