@@ -160,6 +160,14 @@ export interface IGitCloneResult {
 }
 
 /**
+ * Structure for the result of the Git Project API.
+ */
+export interface ProjectResult {
+  code: number;
+  message?: string;
+}
+
+/**
  * Structure for the result of the Git Push & Pull API.
  */
 export interface IGitPushPullResult {
@@ -532,7 +540,7 @@ export class Git {
   }
 
   /** Make request to initialize a  new git Project repository at path 'path' */
-  async project(path: string, projectNmae: string): Promise<Response> {
+  async project(path: string, projectNmae: string): Promise<ProjectResult> {
     try {
       let response = await httpGitRequest('/git/project', 'POST', {
         current_path: path,
