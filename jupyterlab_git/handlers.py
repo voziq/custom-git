@@ -406,9 +406,9 @@ class GitProjectHandler(GitHandler):
         """
         POST request handler, initializes a repository.
         """
-        current_path = self.get_json_body()["current_path"]
-        my_output = self.git.project(current_path)
-        self.finish(my_output)		
+        data = json.loads(self.request.body.decode("utf-8"))
+        response = self.git.project(data["current_path"], data["Project_name"])
+        self.finish(json.dumps(response))		
 
 class GitAddAllUntrackedHandler(GitHandler):
     """

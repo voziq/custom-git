@@ -532,17 +532,18 @@ export class Git {
   }
 
   /** Make request to initialize a  new git Project repository at path 'path' */
-  async project(path: string): Promise<Response> {
+  async project(path: string, projectNmae: string): Promise<Response> {
     try {
       let response = await httpGitRequest('/git/project', 'POST', {
-        current_path: path
+        current_path: path,
+        Project_name: projectNmae
       });
       if (response.status !== 200) {
-        return response.json().then((data: any) => {
+       const data = await response.json();
           throw new ServerConnection.ResponseError(response, data.message);
-        });
+        
       }
-      return response;
+      return response.json();
     } catch (err) {
       throw ServerConnection.NetworkError;
     }

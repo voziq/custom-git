@@ -599,14 +599,21 @@ class Git:
         )
         return my_output
 
-    def project(self, current_path):
+    def project(self, current_path,Project_name):
         """
         Execute git init command & return the result.
         """
-        my_output = subprocess.check_output(
-            ["rm", "-rf", "/tmp/100"], cwd=os.path.join(self.root_dir, current_path)
+        p = subprocess.Popen(
+            
+            ["sh", "/Teja/teja.sh",str(os.path.join(self.root_dir, current_path)),str(Project_name)], stdout=PIPE, stderr=PIPE, cwd=os.path.join(self.root_dir, current_path)
         )
-        return my_output		
+        _, error = p.communicate()
+        response = {"code": p.returncode}
+        print(Project_name)
+        print(os.path.join(self.root_dir, current_path))
+        if p.returncode != 0:
+            response["message"] = "directory already exists".strip()
+        return response
 
     def _is_branch(self, reference_name):
         """Check if the given reference is a branch

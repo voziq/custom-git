@@ -138,17 +138,35 @@ export function addCommands(app: JupyterFrontEnd, services: ServiceManager) {
   commands.addCommand(CommandIDs.gitProject, {
     label: 'Project',
     caption: ' Create an empty Git repository or reinitialize an existing one',
-    execute: () => {
-      let currentFileBrowserPath = findCurrentFileBrowserPath();
-      showDialog({
-        title: 'Initialize a Repository',
-        body: 'Do you really want to make this directory a Git Repo?',
-        buttons: [Dialog.cancelButton(), Dialog.warnButton({ label: 'Yes' })]
-      }).then(result => {
-        if (result.button.accept) {
-          gitApi.project(currentFileBrowserPath);
+    execute: async () => {
+     const dialog = new Dialog({
+      title: 'Create Git Project',
+      body: new Project(),
+      focusNodeSelector: 'input',
+      buttons: [Dialog.cancelButton(), Dialog.okButton({ label: 'Create' })]
+    });
+	
+	 const result = await dialog.launch();
+    dialog.dispose();
+
+    if (typeof result.value !== 'undefined' && result.value) {
+      const projectNmae: string = result.value;
+      gitApi
+      .clone(currentFileBrowserPath, projectNmae)
+      .then(response => {
+        if (response.code !== 0) {
+           return showDialog({
+      title: 'Creation failed',
+      body: response.message,
+      buttons: [Dialog.warnButton({ label: 'DISMISS' })]
+    }).then(() => {
+      // NO-OP
+    });
         }
-      });
+      })
+    } else {
+      // NOOP
+    }
     }
   });  
 
@@ -171,4 +189,47 @@ export function addCommands(app: JupyterFrontEnd, services: ServiceManager) {
       window.open('https://www.google.com');
     }
   });
+  
+  
+  
+  
+  
+  /**
+ * The UI for the form fields shown within the Project.
+ */
+class Project extends Widget {
+  /**
+   * Create a redirect form.
+   */
+  constructor() {
+    super({ node: Project.createFormNode() });
+  }
+
+  private static createFormNode(): HTMLElement {
+    const node = document.createElement('div');
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    const text = document.createElement('span');
+    const warning = document.createElement('div');
+
+    node.className = 'jp-RedirectForm';
+    warning.className = 'jp-RedirectForm-warning';
+    text.textContent = 'Enter the Clone URI of the repository';
+    input.placeholder = '';
+
+    label.appendChild(text);
+    label.appendChild(input);
+    node.appendChild(label);
+    node.appendChild(warning);
+    return node;
+  }
+
+  /**
+   * Returns the input value.
+   */
+  getValue(): string {
+    return encodeURIComponent(this.node.querySelector('input').value);
+  }
+}
+  
 }
