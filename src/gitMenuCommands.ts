@@ -154,7 +154,7 @@ export function addCommands(app: JupyterFrontEnd, services: ServiceManager) {
     if (typeof result.value !== 'undefined' && result.value) {
       const projectNmae: string = result.value;
       gitApi
-      .clone(currentFileBrowserPath, projectNmae)
+      .project(currentFileBrowserPath, projectNmae)
       .then(response => {
         if (response.code !== 0) {
            return showDialog({
