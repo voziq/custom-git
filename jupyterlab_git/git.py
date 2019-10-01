@@ -601,16 +601,15 @@ class Git:
 
     def project(self, current_path,Project_name):
         """
-        Execute git init command & return the result.
+        Execute Create Project command & return the result.
         """
+        excute=os.path.dirname(os.path.abspath(__file__))+"/excute.sh"
         p = subprocess.Popen(
             
-            ["sh", "/Teja/teja.sh",str(os.path.join(self.root_dir, current_path)),str(Project_name)], stdout=PIPE, stderr=PIPE, cwd=os.path.join(self.root_dir, current_path)
+            ["sh", excute ,str(os.path.join(self.root_dir, current_path)),str(Project_name)], stdout=PIPE, stderr=PIPE, cwd=os.path.join(self.root_dir, current_path)
         )
         _, error = p.communicate()
-        response = {"code": p.returncode}
-        print(Project_name)
-        print(os.path.join(self.root_dir, current_path))
+        response = {"code": p.returncode}        
         if p.returncode != 0:
             response["message"] = "directory already exists".strip()
         return response
