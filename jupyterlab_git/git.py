@@ -603,10 +603,11 @@ class Git:
         """
         Execute Create Project command & return the result.
         """
+        user=os.environ['USER'] 
         excute=os.path.dirname(os.path.abspath(__file__))+"/excute.sh"
         p = subprocess.Popen(
             
-            ["sh", excute ,str(os.path.join(self.root_dir, current_path)),str(Project_name)], stdout=PIPE, stderr=PIPE, cwd=os.path.join(self.root_dir, current_path)
+            ["bash", excute ,str(os.path.join(self.root_dir, current_path)),str(Project_name),str(user)], stdout=PIPE, stderr=PIPE, cwd=os.path.join(self.root_dir, current_path)
         )
         _, error = p.communicate()
         response = {"code": p.returncode}        
