@@ -217,7 +217,7 @@ class Project extends Widget {
 
     node.className = 'jp-RedirectForm';
     warning.className = 'jp-RedirectForm-warning';
-    text.textContent = 'Enter the Clone URI of the repository';
+    text.textContent = 'Enter the Project Name';
     input.placeholder = '';
 
     label.appendChild(text);
