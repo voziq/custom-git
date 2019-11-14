@@ -556,4 +556,22 @@ export class Git {
       throw ServerConnection.NetworkError;
     }
   }  
+  
+   /** Make request to initialize a  delete git Project repository at path 'path' */
+  async delItem(path: string, projectNmae: string): Promise<ProjectResult> {
+    try {
+      let response = await httpGitRequest('/git/delItem', 'POST', {
+        current_path: path,
+        Project_name: projectNmae
+      });
+      if (response.status !== 200) {
+       const data = await response.json();
+          throw new ServerConnection.ResponseError(response, data.message);
+        
+      }
+      return response.json();
+    } catch (err) {
+      throw ServerConnection.NetworkError;
+    }
+  }
 }
